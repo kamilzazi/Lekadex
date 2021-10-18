@@ -1,0 +1,78 @@
+﻿@model PrescriptionViewModel
+
+@{
+    ViewData["Title"] = "Medicine Page";
+}
+
+<a asp-controller="Medicine" asp-action="Add" class="btn btn-success">Go to add</a>
+
+<div>
+    Prescription's data: <br />
+    Id: @Model.Id <br />
+    Name: @Model.Name <br />
+    CreatedDate: @Model.CreatedDate <br />
+</div>
+
+<form asp-controller="Medicine" asp-action="Index">
+    <input type="text" name="FilterString" />
+    <button type="submit" class="btn btn-success">Filter</button>
+</form>
+
+
+<div class="text-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    Id
+                </th>
+                <th scope="col">
+                    Name
+                </th>
+                <th scope="col">
+                    CompanyName
+                </th>
+                <th scope="col">
+                    ActiveSubstance
+                </th>
+                <th scope="col">
+                    Weight
+                </th>
+                <th scope="col">
+                    Price
+                </th>
+                <th scope="col">
+                    Amount
+                </th>
+                <th scope="col">
+                    PriceInTotal
+                </th>
+                <th scope="col">
+                    ExpirationDate
+                </th>
+                <th scope="col">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var medicine in Model.Medicines)
+            {
+            <tr>
+                <th scope="row">@medicine.Id</th>
+                <td>@medicine.Name</td>
+                <td>@medicine.CompanyName</td>
+                <td>@medicine.ActiveSubstance</td>
+                <td>@medicine.Weight</td>
+                <td>@medicine.Price</td>
+                <td>@medicine.Amount</td>
+                <td>@medicine.PriceInTotal</td>
+                <td>@medicine.ExpirationDate</td>
+                <td>
+                    <a asp-area="" asp-controller="Medicine" asp-action="Delete" asp-route-medicineId="@medicine.Id">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
